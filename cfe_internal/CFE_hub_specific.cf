@@ -80,7 +80,7 @@ bundle agent cfe_internal_update_folders
 
  files:
 
-  "$(sys.workdir)/master_software_updates/$(dirs)/." -> { "goal_updated" }
+  "$(sys.workdir)/master_software_updates/$(dirs)/."
      comment => "Prepare binary upgrade folders for all distributions in our environment",
       handle => "cfe_internal_update_folders_files_create_dirs",
       create => "true";
@@ -371,21 +371,21 @@ bundle agent cfe_internal_php_mod
 
   restart_webserver.redhat::
 
-   "/bin/sleep 1 && /etc/init.d/httpd restart" -> { "goal_availabilty" }
+   "/bin/sleep 1 && /etc/init.d/httpd restart"
       comment => "Restart httpd service on RedHat/CentOS",
        handle => "cfe_internal_php_mod_commands_httpd_redhat",
       contain => in_shell;
 
   restart_webserver.debian::
 
-   "/bin/sleep 1 && /etc/init.d/apache2 restart" -> { "goal_availabilty" }
+   "/bin/sleep 1 && /etc/init.d/apache2 restart"
       comment => "Restart apache2 service on Debian/Ubuntu",
        handle => "cfe_internal_php_mod_commands_apache2_debian",
       contain => in_shell;
 
   restart_webserver.SuSE::
 
-   "/bin/sleep 1 && /etc/init.d/apache2 restart"  -> { "goal_availabilty" }
+   "/bin/sleep 1 && /etc/init.d/apache2 restart"
       comment => "Restart apache2 service on SuSE",
        handle => "cfe_internal_php_mod_commands_apache2_suse",
       contain => in_shell;
@@ -577,7 +577,7 @@ bundle agent cfe_internal_policysrv
 
   restart_apache2::
 
-   "/sbin/service apache2 restart" -> { "goal_availability" }
+   "/sbin/service apache2 restart"
       comment => "Restart APACHE2 on SLES/OpenSuSE",
        handle => "cfe_internal_policysrv_commands_restart_apache2";
 
@@ -599,7 +599,7 @@ bundle agent cfe_internal_policysrv
 
   restart_httpd::
 
-   "/sbin/service httpd restart" -> { "goal_availability" }
+   "/sbin/service httpd restart"
       comment => "Restart HTTPD on Redhat/CentOS/Fedora",
        handle => "cfe_internal_policysrv_commands_restart_httpd";
 
@@ -998,7 +998,7 @@ bundle agent cfe_internal_editor
 
   !windows.am_policy_hub::
 
-   "$(cfe_internal_hub_vars.docroot)/graphs/." -> "CFEngine 3 Enterprise Knowledge Map"
+   "$(cfe_internal_hub_vars.docroot)/graphs/."
        create => "true",
         perms => mog("755","$(web_owner)","$(web_group)"),
       comment => "Make sure web server has permission to create working directories for Knowledge Map",
@@ -1006,7 +1006,7 @@ bundle agent cfe_internal_editor
 
   !windows.am_policy_hub::
 
-   "$(cfe_internal_hub_vars.docroot)/policies/." -> "CFEngine 3 Enterprise Editor"
+   "$(cfe_internal_hub_vars.docroot)/policies/."
        create => "true",
         perms => mog("700","$(web_owner)","$(web_group)"),
       comment => "Make sure web server has permission to create working directories for editor users",
@@ -1014,7 +1014,7 @@ bundle agent cfe_internal_editor
 
   !windows.am_policy_hub::
 
-   "$(cfe_internal_hub_vars.docroot)/policies/." -> "CFEngine 3 Enterprise Editor"
+   "$(cfe_internal_hub_vars.docroot)/policies/."
             delete => tidy,
        file_select => days_old("1"),
       depth_search => recurse("inf"),
@@ -1023,7 +1023,7 @@ bundle agent cfe_internal_editor
 
   !windows.am_policy_hub::
 
-   "$(cfe_internal_hub_vars.docroot)/tmp/." -> "CFEngine 3 Enterprise Editor"
+   "$(cfe_internal_hub_vars.docroot)/tmp/."
        create => "true",
         perms => mog("755","$(web_owner)","$(web_group)"),
       comment => "Make sure web server has permission to create tmp directories for apache internal use",

@@ -40,7 +40,7 @@ vars:
 
 files:
 
-   "$(watch_files)" -> "goal_infosec"
+   "$(watch_files)"
       comment => "Change detection on important files",
        handle => "change_management_files_watch_files",
       changes => diff;
