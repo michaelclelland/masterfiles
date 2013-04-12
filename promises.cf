@@ -30,7 +30,7 @@ body common control
 
                   # Design Center
                   # MARKER FOR CF-SKETCH INPUT INSERTION
-                    "cf-sketch-runfile.cf",
+                    "sketches/meta/api-runfile.cf",
 
                   # CFEngine internal processes for Mission Portal mostly
                     "cfe_internal/CFE_cfengine.cf",
