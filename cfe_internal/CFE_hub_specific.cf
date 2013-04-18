@@ -998,37 +998,11 @@ bundle agent cfe_internal_editor
 
   !windows.am_policy_hub::
 
-   "$(cfe_internal_hub_vars.docroot)/graphs/."
+   "/opt/cfengine/user_workdir/."
        create => "true",
         perms => mog("755","$(web_owner)","$(web_group)"),
-      comment => "Make sure web server has permission to create working directories for Knowledge Map",
+      comment => "Make sure web server has permission to create working directories for users",
        handle => "cfe_internal_editor_files_graphs_dir";
-
-  !windows.am_policy_hub::
-
-   "$(cfe_internal_hub_vars.docroot)/policies/."
-       create => "true",
-        perms => mog("700","$(web_owner)","$(web_group)"),
-      comment => "Make sure web server has permission to create working directories for editor users",
-       handle => "cfe_internal_editor_files_policies_dir";
-
-  !windows.am_policy_hub::
-
-   "$(cfe_internal_hub_vars.docroot)/policies/."
-            delete => tidy,
-       file_select => days_old("1"),
-      depth_search => recurse("inf"),
-           comment => "Remove working directories of old editor sessions",
-            handle => "cfe_internal_editor_files_policies_tidy";
-
-  !windows.am_policy_hub::
-
-   "$(cfe_internal_hub_vars.docroot)/tmp/."
-       create => "true",
-        perms => mog("755","$(web_owner)","$(web_group)"),
-      comment => "Make sure web server has permission to create tmp directories for apache internal use",
-       handle => "cfe_internal_editor_files_tmp_dir";
-
 }
 
 ##################################################################
