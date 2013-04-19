@@ -1,8 +1,0 @@
-{
- log: "STDERR",
- log_level: 4,
- repolist: [ "../sketches" ],
- recognized_sources: [ "/var/cfengine/design-center/sketches" ],
- runfile: { location: "api-runfile.cf", standalone: false, relocate_path: "sketches" },
- vardata: "vardata.conf",
-}
