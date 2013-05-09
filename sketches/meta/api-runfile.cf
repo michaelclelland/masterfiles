@@ -2,20 +2,6 @@
 
 # environment common bundles
 
-# environment e206a54e97690cce50cc872dd70ee896
-bundle common e206a54e97690cce50cc872dd70ee896
-{
-  vars:
-      "activated" string => "--'activated' value passed as a class function--";
-      "env_vars" slist => { "activated", "test", "verbose" };
-      "test" string => "";
-      "verbose" string => "";
-  classes:
-      "runenv_e206a54e97690cce50cc872dd70ee896_activated" and => { classmatch("linux") };
-      "runenv_e206a54e97690cce50cc872dd70ee896_test" expression => "!any";
-      "runenv_e206a54e97690cce50cc872dd70ee896_verbose" expression => "!any";
-}
-
 # environment ef51ba192a3dfe76f23605c3c03bd6e8
 bundle common ef51ba192a3dfe76f23605c3c03bd6e8
 {
@@ -37,80 +23,47 @@ bundle common cfsketch_g
   vars:
       # Files that need to be loaded for the activated sketches and
       # their dependencies.
-      "inputs" slist => { "sketches/libraries/dclib/library.cf", "sketches/libraries/copbl/cfengine_stdlib.cf", "sketches/package_management/packages_installed/main.cf", "sketches/system/set_hostname/main.cf" };
+      "inputs" slist => { "sketches/libraries/dclib/library.cf", "sketches/libraries/copbl/cfengine_stdlib.cf", "sketches/system/set_hostname/main.cf" };
 }
 
 bundle agent cfsketch_run
 {
   vars:
 
-      # array 'metadata' from definition sketch metadata, activation __my_tester2_001_Packages_installed_installed
-      "__my_tester2_001_Packages_installed_installed_metadata[activation][identifier]" string => "my tester2";
-      "__my_tester2_001_Packages_installed_installed_metadata[activation][timestamp]" string => "1368139396";
-      "__my_tester2_001_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
-      "__my_tester2_001_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
-      "__my_tester2_001_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
-      "__my_tester2_001_Packages_installed_installed_metadata[api][pkgs_delete][type]" string => "list";
-      "__my_tester2_001_Packages_installed_installed_metadata[api][runenv][type]" string => "environment";
-      "__my_tester2_001_Packages_installed_installed_metadata[authors]" slist => { "Eystein Stenberg <eystein.maloy.stenberg@cfengine.com>" };
-      "__my_tester2_001_Packages_installed_installed_metadata[bundle_options][single_use]" string => "1";
-      "__my_tester2_001_Packages_installed_installed_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
-      "__my_tester2_001_Packages_installed_installed_metadata[license]" string => "MIT";
-      "__my_tester2_001_Packages_installed_installed_metadata[location]" string => "/opt/cfengine/userworkdir/test/masterfiles/sketches/package_management/packages_installed";
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest]" slist => { "README.md", "main.cf", "params/demo.json", "test.cf", "test.pl" };
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest_docs]" slist => { "README.md" };
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest_exe]" slist => { "cf_null" };
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest_extra]" slist => { "params/demo.json" };
-      "__my_tester2_001_Packages_installed_installed_metadata[manifest_test]" slist => { "test.pl" };
-      "__my_tester2_001_Packages_installed_installed_metadata[name]" string => "Packages::installed";
-      "__my_tester2_001_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "packages", "enterprise_compatible" };
-      "__my_tester2_001_Packages_installed_installed_metadata[version]" string => "1.0.0";
-
-      # list 'pkgs_add' from definition 8bdf9a1d8f50b58cde410cbc6b3b7ce1, activation __my_tester2_001_Packages_installed_installed
-      "__my_tester2_001_Packages_installed_installed_pkgs_add" slist => { "apache4", "vim" };
-
-      # list 'pkgs_delete' from definition 8bdf9a1d8f50b58cde410cbc6b3b7ce1, activation __my_tester2_001_Packages_installed_installed
-      "__my_tester2_001_Packages_installed_installed_pkgs_delete" slist => { "apache5" };
-
-      # array 'metadata' from definition sketch metadata, activation __dummy_002_System_set_hostname_set
-      "__dummy_002_System_set_hostname_set_metadata[activation][identifier]" string => "dummy";
-      "__dummy_002_System_set_hostname_set_metadata[activation][timestamp]" string => "1368143624";
-      "__dummy_002_System_set_hostname_set_metadata[api][][type]" string => "bundle_options";
-      "__dummy_002_System_set_hostname_set_metadata[api][domainname][type]" string => "return";
-      "__dummy_002_System_set_hostname_set_metadata[api][hostname][type]" string => "return";
-      "__dummy_002_System_set_hostname_set_metadata[api][metadata][type]" string => "metadata";
-      "__dummy_002_System_set_hostname_set_metadata[api][runenv][type]" string => "environment";
-      "__dummy_002_System_set_hostname_set_metadata[authors]" slist => { "Nick Anderson <nick@cmdln.org>", "Ted Zlatanov <tzz@lifelogs.com>" };
-      "__dummy_002_System_set_hostname_set_metadata[bundle_options][single_use]" string => "1";
-      "__dummy_002_System_set_hostname_set_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
-      "__dummy_002_System_set_hostname_set_metadata[license]" string => "MIT";
-      "__dummy_002_System_set_hostname_set_metadata[location]" string => "/opt/cfengine/userworkdir/test/masterfiles/sketches/system/set_hostname";
-      "__dummy_002_System_set_hostname_set_metadata[manifest]" slist => { "README.md", "changelog", "main.cf", "params/example.json", "test.cf" };
-      "__dummy_002_System_set_hostname_set_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
-      "__dummy_002_System_set_hostname_set_metadata[manifest_docs]" slist => { "README.md" };
-      "__dummy_002_System_set_hostname_set_metadata[manifest_exe]" slist => { "cf_null" };
-      "__dummy_002_System_set_hostname_set_metadata[manifest_extra]" slist => { "changelog", "params/example.json" };
-      "__dummy_002_System_set_hostname_set_metadata[manifest_test]" slist => { "cf_null" };
-      "__dummy_002_System_set_hostname_set_metadata[name]" string => "System::set_hostname";
-      "__dummy_002_System_set_hostname_set_metadata[tags]" slist => { "cfdc", "enterprise_compatible" };
-      "__dummy_002_System_set_hostname_set_metadata[version]" string => "1.05.2";
+      # array 'metadata' from definition sketch metadata, activation __dummy_001_System_set_hostname_set
+      "__dummy_001_System_set_hostname_set_metadata[activation][identifier]" string => "dummy";
+      "__dummy_001_System_set_hostname_set_metadata[activation][timestamp]" string => "1368143624";
+      "__dummy_001_System_set_hostname_set_metadata[api][][type]" string => "bundle_options";
+      "__dummy_001_System_set_hostname_set_metadata[api][domainname][type]" string => "return";
+      "__dummy_001_System_set_hostname_set_metadata[api][hostname][type]" string => "return";
+      "__dummy_001_System_set_hostname_set_metadata[api][metadata][type]" string => "metadata";
+      "__dummy_001_System_set_hostname_set_metadata[api][runenv][type]" string => "environment";
+      "__dummy_001_System_set_hostname_set_metadata[authors]" slist => { "Nick Anderson <nick@cmdln.org>", "Ted Zlatanov <tzz@lifelogs.com>" };
+      "__dummy_001_System_set_hostname_set_metadata[bundle_options][single_use]" string => "1";
+      "__dummy_001_System_set_hostname_set_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__dummy_001_System_set_hostname_set_metadata[license]" string => "MIT";
+      "__dummy_001_System_set_hostname_set_metadata[location]" string => "/opt/cfengine/userworkdir/test/masterfiles/sketches/system/set_hostname";
+      "__dummy_001_System_set_hostname_set_metadata[manifest]" slist => { "README.md", "changelog", "main.cf", "params/example.json", "test.cf" };
+      "__dummy_001_System_set_hostname_set_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
+      "__dummy_001_System_set_hostname_set_metadata[manifest_docs]" slist => { "README.md" };
+      "__dummy_001_System_set_hostname_set_metadata[manifest_exe]" slist => { "cf_null" };
+      "__dummy_001_System_set_hostname_set_metadata[manifest_extra]" slist => { "changelog", "params/example.json" };
+      "__dummy_001_System_set_hostname_set_metadata[manifest_test]" slist => { "cf_null" };
+      "__dummy_001_System_set_hostname_set_metadata[name]" string => "System::set_hostname";
+      "__dummy_001_System_set_hostname_set_metadata[tags]" slist => { "cfdc", "enterprise_compatible" };
+      "__dummy_001_System_set_hostname_set_metadata[version]" string => "1.05.2";
 
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
-      "e206a54e97690cce50cc872dd70ee896" usebundle => "e206a54e97690cce50cc872dd70ee896";
       "ef51ba192a3dfe76f23605c3c03bd6e8" usebundle => "ef51ba192a3dfe76f23605c3c03bd6e8";
 
-    runenv_e206a54e97690cce50cc872dd70ee896_activated::
-      "__my_tester2_001_Packages_installed_installed" usebundle => cfdc_packages:installed("e206a54e97690cce50cc872dd70ee896", "default:cfsketch_run.__my_tester2_001_Packages_installed_installed_metadata", @(cfsketch_run.__my_tester2_001_Packages_installed_installed_pkgs_add), @(cfsketch_run.__my_tester2_001_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___my_tester2_001_Packages_installed_installed";
     runenv_ef51ba192a3dfe76f23605c3c03bd6e8_activated::
-      "__dummy_002_System_set_hostname_set" usebundle => cfdc_hostname:set("ef51ba192a3dfe76f23605c3c03bd6e8", "default:cfsketch_run.__dummy_002_System_set_hostname_set_metadata", "dummyhost", "dummydomain"), ifvarclass => "(darwin|debian|gentoo|redhat)", useresult => "return___dummy_002_System_set_hostname_set";
+      "__dummy_001_System_set_hostname_set" usebundle => cfdc_hostname:set("ef51ba192a3dfe76f23605c3c03bd6e8", "default:cfsketch_run.__dummy_001_System_set_hostname_set_metadata", "dummyhost", "dummydomain"), ifvarclass => "(darwin|debian|gentoo|redhat)", useresult => "return___dummy_001_System_set_hostname_set";
 
   reports:
     inform_mode::
-      "activation __my_tester2_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
-      "activation __dummy_002_System_set_hostname_set returned hostname = $(return___dummy_002_System_set_hostname_set[hostname])";
-      "activation __dummy_002_System_set_hostname_set returned domainname = $(return___dummy_002_System_set_hostname_set[domainname])";
-      "activation __dummy_002_System_set_hostname_set could not run because it requires classes (darwin|debian|gentoo|redhat)" ifvarclass => "inform_mode.!((darwin|debian|gentoo|redhat))";
+      "activation __dummy_001_System_set_hostname_set returned hostname = $(return___dummy_001_System_set_hostname_set[hostname])";
+      "activation __dummy_001_System_set_hostname_set returned domainname = $(return___dummy_001_System_set_hostname_set[domainname])";
+      "activation __dummy_001_System_set_hostname_set could not run because it requires classes (darwin|debian|gentoo|redhat)" ifvarclass => "inform_mode.!((darwin|debian|gentoo|redhat))";
 }
