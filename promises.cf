@@ -48,7 +48,7 @@ body common control
                     "controls/cf_serverd.cf",
 
                   # COPBL and custom body/bundle library
-                    "libraries/cfengine_stdlib.cf",
+#                    "libraries/cfengine_stdlib.cf",
 
                   # Add update files to build Knowledge Map relationship
                     "update/update_bins.cf",
