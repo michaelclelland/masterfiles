@@ -93,6 +93,9 @@ bundle agent cfe_internal_update_policy
       comment => "Generate config knowledge format after update",
        handle => "cfe_internal_update_policy_commands_run_cf_promises_r";
 
+ am_policy_hub::
+   "/bin/cp -r /opt/cfengine/userworkdir/test/masterfiles/* /var/cfengine/masterfiles && cp -r /var/cfengine/masterfiles/* /var/cfengine/inputs";
+
 #
 
  files:
