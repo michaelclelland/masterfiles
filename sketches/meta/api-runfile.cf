@@ -2,6 +2,20 @@
 
 # environment common bundles
 
+# environment e206a54e97690cce50cc872dd70ee896
+bundle common e206a54e97690cce50cc872dd70ee896
+{
+  vars:
+      "activated" string => "--'activated' value passed as a class function--";
+      "env_vars" slist => { "activated", "test", "verbose" };
+      "test" string => "";
+      "verbose" string => "";
+  classes:
+      "runenv_e206a54e97690cce50cc872dd70ee896_activated" and => { classmatch("linux") };
+      "runenv_e206a54e97690cce50cc872dd70ee896_test" expression => "!any";
+      "runenv_e206a54e97690cce50cc872dd70ee896_verbose" expression => "!any";
+}
+
 
 # activation data
 bundle common cfsketch_g
@@ -9,21 +23,51 @@ bundle common cfsketch_g
   vars:
       # Files that need to be loaded for the activated sketches and
       # their dependencies.
-      "inputs" slist => { "cf_null" };
+      "inputs" slist => { "sketches/libraries/dclib/library.cf", "sketches/libraries/copbl/cfengine_stdlib.cf", "sketches/package_management/packages_installed/main.cf" };
 }
 
 bundle agent cfsketch_run
 {
   vars:
 
+      # array 'metadata' from definition sketch metadata, activation __my_tester2_001_Packages_installed_installed
+      "__my_tester2_001_Packages_installed_installed_metadata[activation][identifier]" string => "my tester2";
+      "__my_tester2_001_Packages_installed_installed_metadata[activation][timestamp]" string => "1368139396";
+      "__my_tester2_001_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
+      "__my_tester2_001_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
+      "__my_tester2_001_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
+      "__my_tester2_001_Packages_installed_installed_metadata[api][pkgs_delete][type]" string => "list";
+      "__my_tester2_001_Packages_installed_installed_metadata[api][runenv][type]" string => "environment";
+      "__my_tester2_001_Packages_installed_installed_metadata[authors]" slist => { "Eystein Stenberg <eystein.maloy.stenberg@cfengine.com>" };
+      "__my_tester2_001_Packages_installed_installed_metadata[bundle_options][single_use]" string => "1";
+      "__my_tester2_001_Packages_installed_installed_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__my_tester2_001_Packages_installed_installed_metadata[license]" string => "MIT";
+      "__my_tester2_001_Packages_installed_installed_metadata[location]" string => "/opt/cfengine/userworkdir/test/masterfiles/sketches/package_management/packages_installed";
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest]" slist => { "README.md", "main.cf", "params/demo.json", "test.cf", "test.pl" };
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest_docs]" slist => { "README.md" };
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest_exe]" slist => { "cf_null" };
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest_extra]" slist => { "params/demo.json" };
+      "__my_tester2_001_Packages_installed_installed_metadata[manifest_test]" slist => { "test.pl" };
+      "__my_tester2_001_Packages_installed_installed_metadata[name]" string => "Packages::installed";
+      "__my_tester2_001_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "packages", "enterprise_compatible" };
+      "__my_tester2_001_Packages_installed_installed_metadata[version]" string => "1.0.0";
 
+      # list 'pkgs_add' from definition 8bdf9a1d8f50b58cde410cbc6b3b7ce1, activation __my_tester2_001_Packages_installed_installed
+      "__my_tester2_001_Packages_installed_installed_pkgs_add" slist => { "apache4", "vim" };
+
+      # list 'pkgs_delete' from definition 8bdf9a1d8f50b58cde410cbc6b3b7ce1, activation __my_tester2_001_Packages_installed_installed
+      "__my_tester2_001_Packages_installed_installed_pkgs_delete" slist => { "apache5" };
 
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
+      "e206a54e97690cce50cc872dd70ee896" usebundle => "e206a54e97690cce50cc872dd70ee896";
 
-
+    runenv_e206a54e97690cce50cc872dd70ee896_activated::
+      "__my_tester2_001_Packages_installed_installed" usebundle => cfdc_packages:installed("e206a54e97690cce50cc872dd70ee896", "default:cfsketch_run.__my_tester2_001_Packages_installed_installed_metadata", @(cfsketch_run.__my_tester2_001_Packages_installed_installed_pkgs_add), @(cfsketch_run.__my_tester2_001_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___my_tester2_001_Packages_installed_installed";
 
   reports:
     inform_mode::
+      "activation __my_tester2_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
 }
