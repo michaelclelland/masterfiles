@@ -118,10 +118,6 @@ we dont have to reboot for it",
       handle    => "$(activation_id)_set_domainname_command";
 
   reports:
-    any::
-      "$(hostname)" bundle_return_value_index => "hostname";
-      "$(domainname)" bundle_return_value_index => "domainname";
-
     verbose::
       "$(this.bundle): imported environment '$(runenv)' var '$(vars)' with value '$($(vars))'";
       "$(this.bundle): imported environment '$(runenv)' class '$(vars)' because 'default:runenv_$(runenv)_$(vars)' was defined"
