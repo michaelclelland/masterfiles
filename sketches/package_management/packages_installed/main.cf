@@ -20,10 +20,6 @@ bundle agent installed(runenv, metadata, pkgs_add, pkgs_delete)
       "metadata" usebundle => default:report_metadata($(this.bundle), $(metadata)),
       inherit => "true";
 
-  commands:
-    "/usr/bin/apt-cache showpkg $(pkgs_add) | grep -v \"Unable to locate\""
-      handle => "$(activation_id)_packages_exist_$(pkgs_add)";
-
   packages:
     not_test::
       "$(pkgs_add)"
