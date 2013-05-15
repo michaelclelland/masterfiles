@@ -46,7 +46,7 @@ bundle agent cfsketch_run
 
       # array 'metadata' from definition sketch metadata, activation __Development_environment_001_Packages_installed_installed
       "__Development_environment_001_Packages_installed_installed_metadata[activation][identifier]" string => "Development environment";
-      "__Development_environment_001_Packages_installed_installed_metadata[activation][timestamp]" string => "1368644069";
+      "__Development_environment_001_Packages_installed_installed_metadata[activation][timestamp]" string => "1368644236";
       "__Development_environment_001_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
       "__Development_environment_001_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
       "__Development_environment_001_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
@@ -67,10 +67,10 @@ bundle agent cfsketch_run
       "__Development_environment_001_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "packages", "enterprise_compatible" };
       "__Development_environment_001_Packages_installed_installed_metadata[version]" string => "1.0.0";
 
-      # list 'pkgs_add' from definition 082117a32326cabb729101cb7816c240, activation __Development_environment_001_Packages_installed_installed
-      "__Development_environment_001_Packages_installed_installed_pkgs_add" slist => { "apache2", "vim" };
+      # list 'pkgs_add' from definition 3077f50902e32e1b23e8883e36fa71d1, activation __Development_environment_001_Packages_installed_installed
+      "__Development_environment_001_Packages_installed_installed_pkgs_add" slist => { "apache2" };
 
-      # list 'pkgs_delete' from definition 082117a32326cabb729101cb7816c240, activation __Development_environment_001_Packages_installed_installed
+      # list 'pkgs_delete' from definition 3077f50902e32e1b23e8883e36fa71d1, activation __Development_environment_001_Packages_installed_installed
       "__Development_environment_001_Packages_installed_installed_pkgs_delete" slist => { "nano" };
 
       # array 'metadata' from definition sketch metadata, activation __dummy_002_System_set_hostname_set
