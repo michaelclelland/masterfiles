@@ -2,6 +2,20 @@
 
 # environment common bundles
 
+# environment 1d41c853af58d3a7ae54990ce29417d8
+bundle common 1d41c853af58d3a7ae54990ce29417d8
+{
+  vars:
+      "activated" string => "--'activated' value passed as a class function--";
+      "env_vars" slist => { "activated", "test", "verbose" };
+      "test" string => "";
+      "verbose" string => "";
+  classes:
+      "runenv_1d41c853af58d3a7ae54990ce29417d8_activated" and => { classmatch("ubuntu") };
+      "runenv_1d41c853af58d3a7ae54990ce29417d8_test" expression => "!any";
+      "runenv_1d41c853af58d3a7ae54990ce29417d8_verbose" expression => "!any";
+}
+
 # environment e206a54e97690cce50cc872dd70ee896
 bundle common e206a54e97690cce50cc872dd70ee896
 {
@@ -59,15 +73,48 @@ bundle agent cfsketch_run
       # list 'pkgs_delete' from definition 5eaca1267b7b8df95cd47749d6d28902, activation __test_001_Packages_installed_installed
       "__test_001_Packages_installed_installed_pkgs_delete" slist => { "jed" };
 
+      # array 'metadata' from definition sketch metadata, activation __Nouchpackage_002_Packages_installed_installed
+      "__Nouchpackage_002_Packages_installed_installed_metadata[activation][identifier]" string => "Nouchpackage";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[activation][timestamp]" string => "1369172281";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[api][pkgs_delete][type]" string => "list";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[api][runenv][type]" string => "environment";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[authors]" slist => { "Eystein Stenberg <eystein.maloy.stenberg@cfengine.com>" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[bundle_options][single_use]" string => "1";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[license]" string => "MIT";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[location]" string => "sketches/package_management/packages_installed";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest]" slist => { "README.md", "main.cf", "params/demo.json", "test.cf", "test.pl" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest_docs]" slist => { "README.md" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest_exe]" slist => { "cf_null" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest_extra]" slist => { "params/demo.json" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[manifest_test]" slist => { "test.pl" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[name]" string => "Packages::installed";
+      "__Nouchpackage_002_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "packages", "enterprise_compatible" };
+      "__Nouchpackage_002_Packages_installed_installed_metadata[version]" string => "1.0.0";
+
+      # list 'pkgs_add' from definition 9ac7ab7d329ae3e01027147b7f36e5a7, activation __Nouchpackage_002_Packages_installed_installed
+      "__Nouchpackage_002_Packages_installed_installed_pkgs_add" slist => { "nosuchpackage" };
+
+      # list 'pkgs_delete' from definition 9ac7ab7d329ae3e01027147b7f36e5a7, activation __Nouchpackage_002_Packages_installed_installed
+      "__Nouchpackage_002_Packages_installed_installed_pkgs_delete" slist => { "noosuchone", "eitherthis" };
+
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
+      "1d41c853af58d3a7ae54990ce29417d8" usebundle => "1d41c853af58d3a7ae54990ce29417d8";
       "e206a54e97690cce50cc872dd70ee896" usebundle => "e206a54e97690cce50cc872dd70ee896";
 
     runenv_e206a54e97690cce50cc872dd70ee896_activated::
       "__test_001_Packages_installed_installed" usebundle => cfdc_packages:installed("e206a54e97690cce50cc872dd70ee896", "default:cfsketch_run.__test_001_Packages_installed_installed_metadata", @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_add), @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___test_001_Packages_installed_installed";
+    runenv_1d41c853af58d3a7ae54990ce29417d8_activated::
+      "__Nouchpackage_002_Packages_installed_installed" usebundle => cfdc_packages:installed("1d41c853af58d3a7ae54990ce29417d8", "default:cfsketch_run.__Nouchpackage_002_Packages_installed_installed_metadata", @(cfsketch_run.__Nouchpackage_002_Packages_installed_installed_pkgs_add), @(cfsketch_run.__Nouchpackage_002_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___Nouchpackage_002_Packages_installed_installed";
 
   reports:
     inform_mode::
       "activation __test_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
+      "activation __Nouchpackage_002_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
 }
