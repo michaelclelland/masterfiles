@@ -16,6 +16,20 @@ bundle common 1b6aaf65758a53826053c5dd3e893e29
       "runenv_1b6aaf65758a53826053c5dd3e893e29_verbose" expression => "!any";
 }
 
+# environment 22628dd1170719fb03961fb047564c9a
+bundle common 22628dd1170719fb03961fb047564c9a
+{
+  vars:
+      "activated" string => "--'activated' value passed as a class function--";
+      "env_vars" slist => { "activated", "test", "verbose" };
+      "test" string => "";
+      "verbose" string => "";
+  classes:
+      "runenv_22628dd1170719fb03961fb047564c9a_activated" and => { classmatch("solaris.*"), classmatch("_stdlib_path_exists_apt_key") };
+      "runenv_22628dd1170719fb03961fb047564c9a_test" expression => "!any";
+      "runenv_22628dd1170719fb03961fb047564c9a_verbose" expression => "!any";
+}
+
 
 # activation data
 bundle common cfsketch_g
@@ -59,15 +73,48 @@ bundle agent cfsketch_run
       # list 'pkgs_delete' from definition a36a87fadba1b8cf5291dee23d201e12, activation __test_001_Packages_installed_installed
       "__test_001_Packages_installed_installed_pkgs_delete" slist => { "test" };
 
+      # array 'metadata' from definition sketch metadata, activation __qwerty_002_Packages_installed_installed
+      "__qwerty_002_Packages_installed_installed_metadata[activation][identifier]" string => "qwerty";
+      "__qwerty_002_Packages_installed_installed_metadata[activation][timestamp]" string => "1371636294";
+      "__qwerty_002_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
+      "__qwerty_002_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
+      "__qwerty_002_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
+      "__qwerty_002_Packages_installed_installed_metadata[api][pkgs_delete][type]" string => "list";
+      "__qwerty_002_Packages_installed_installed_metadata[api][runenv][type]" string => "environment";
+      "__qwerty_002_Packages_installed_installed_metadata[authors]" slist => { "Eystein Stenberg <eystein.maloy.stenberg@cfengine.com>" };
+      "__qwerty_002_Packages_installed_installed_metadata[bundle_options][single_use]" string => "1";
+      "__qwerty_002_Packages_installed_installed_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__qwerty_002_Packages_installed_installed_metadata[license]" string => "MIT";
+      "__qwerty_002_Packages_installed_installed_metadata[location]" string => "sketches/package_management/packages_installed";
+      "__qwerty_002_Packages_installed_installed_metadata[manifest]" slist => { "main.cf" };
+      "__qwerty_002_Packages_installed_installed_metadata[manifest_cf]" slist => { "main.cf" };
+      "__qwerty_002_Packages_installed_installed_metadata[manifest_docs]" slist => { "cf_null" };
+      "__qwerty_002_Packages_installed_installed_metadata[manifest_exe]" slist => { "cf_null" };
+      "__qwerty_002_Packages_installed_installed_metadata[manifest_extra]" slist => { "cf_null" };
+      "__qwerty_002_Packages_installed_installed_metadata[manifest_test]" slist => { "cf_null" };
+      "__qwerty_002_Packages_installed_installed_metadata[name]" string => "Packages::installed";
+      "__qwerty_002_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "enterprise_compatible" };
+      "__qwerty_002_Packages_installed_installed_metadata[version]" string => "1.0.0";
+
+      # list 'pkgs_add' from definition c07ba5111ad140864a5f16526654e672, activation __qwerty_002_Packages_installed_installed
+      "__qwerty_002_Packages_installed_installed_pkgs_add" slist => { "qwerty" };
+
+      # list 'pkgs_delete' from definition c07ba5111ad140864a5f16526654e672, activation __qwerty_002_Packages_installed_installed
+      "__qwerty_002_Packages_installed_installed_pkgs_delete" slist => { "qwertyui" };
+
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
       "1b6aaf65758a53826053c5dd3e893e29" usebundle => "1b6aaf65758a53826053c5dd3e893e29";
+      "22628dd1170719fb03961fb047564c9a" usebundle => "22628dd1170719fb03961fb047564c9a";
 
     runenv_1b6aaf65758a53826053c5dd3e893e29_activated::
       "__test_001_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("1b6aaf65758a53826053c5dd3e893e29", "default:cfsketch_run.__test_001_Packages_installed_installed_metadata", @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_add), @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___test_001_Packages_installed_installed";
+    runenv_22628dd1170719fb03961fb047564c9a_activated::
+      "__qwerty_002_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("22628dd1170719fb03961fb047564c9a", "default:cfsketch_run.__qwerty_002_Packages_installed_installed_metadata", @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_add), @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___qwerty_002_Packages_installed_installed";
 
   reports:
     inform_mode::
       "activation __test_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
+      "activation __qwerty_002_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
 }
