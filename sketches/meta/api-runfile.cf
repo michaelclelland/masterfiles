@@ -2,6 +2,20 @@
 
 # environment common bundles
 
+# environment 122b034fe07bdc8dc80d1da23925bf34
+bundle common 122b034fe07bdc8dc80d1da23925bf34
+{
+  vars:
+      "activated" string => "--'activated' value passed as a class function--";
+      "env_vars" slist => { "activated", "test", "verbose" };
+      "test" string => "";
+      "verbose" string => "";
+  classes:
+      "runenv_122b034fe07bdc8dc80d1da23925bf34_activated" and => { classmatch("windows") };
+      "runenv_122b034fe07bdc8dc80d1da23925bf34_test" expression => "!any";
+      "runenv_122b034fe07bdc8dc80d1da23925bf34_verbose" expression => "!any";
+}
+
 # environment 1b6aaf65758a53826053c5dd3e893e29
 bundle common 1b6aaf65758a53826053c5dd3e893e29
 {
@@ -102,9 +116,39 @@ bundle agent cfsketch_run
       # list 'pkgs_delete' from definition c07ba5111ad140864a5f16526654e672, activation __qwerty_002_Packages_installed_installed
       "__qwerty_002_Packages_installed_installed_pkgs_delete" slist => { "qwertyui" };
 
+      # array 'metadata' from definition sketch metadata, activation __kujyhg_003_Packages_installed_installed
+      "__kujyhg_003_Packages_installed_installed_metadata[activation][identifier]" string => "kujyhg";
+      "__kujyhg_003_Packages_installed_installed_metadata[activation][timestamp]" string => "1373633562";
+      "__kujyhg_003_Packages_installed_installed_metadata[api][][type]" string => "bundle_options";
+      "__kujyhg_003_Packages_installed_installed_metadata[api][metadata][type]" string => "metadata";
+      "__kujyhg_003_Packages_installed_installed_metadata[api][pkgs_add][type]" string => "list";
+      "__kujyhg_003_Packages_installed_installed_metadata[api][pkgs_delete][type]" string => "list";
+      "__kujyhg_003_Packages_installed_installed_metadata[api][runenv][type]" string => "environment";
+      "__kujyhg_003_Packages_installed_installed_metadata[authors]" slist => { "Eystein Stenberg <eystein.maloy.stenberg@cfengine.com>" };
+      "__kujyhg_003_Packages_installed_installed_metadata[bundle_options][single_use]" string => "1";
+      "__kujyhg_003_Packages_installed_installed_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__kujyhg_003_Packages_installed_installed_metadata[license]" string => "MIT";
+      "__kujyhg_003_Packages_installed_installed_metadata[location]" string => "sketches/package_management/packages_installed";
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest]" slist => { "main.cf" };
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest_cf]" slist => { "main.cf" };
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest_docs]" slist => { "cf_null" };
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest_exe]" slist => { "cf_null" };
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest_extra]" slist => { "cf_null" };
+      "__kujyhg_003_Packages_installed_installed_metadata[manifest_test]" slist => { "cf_null" };
+      "__kujyhg_003_Packages_installed_installed_metadata[name]" string => "Packages::installed";
+      "__kujyhg_003_Packages_installed_installed_metadata[tags]" slist => { "cfdc", "enterprise_compatible" };
+      "__kujyhg_003_Packages_installed_installed_metadata[version]" string => "1.0.0";
+
+      # list 'pkgs_add' from definition 0ac4d0760f90fcfad549b9e5abbba78d, activation __kujyhg_003_Packages_installed_installed
+      "__kujyhg_003_Packages_installed_installed_pkgs_add" slist => { "ertyui" };
+
+      # list 'pkgs_delete' from definition 0ac4d0760f90fcfad549b9e5abbba78d, activation __kujyhg_003_Packages_installed_installed
+      "__kujyhg_003_Packages_installed_installed_pkgs_delete" slist => { "iuytre" };
+
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
+      "122b034fe07bdc8dc80d1da23925bf34" usebundle => "122b034fe07bdc8dc80d1da23925bf34";
       "1b6aaf65758a53826053c5dd3e893e29" usebundle => "1b6aaf65758a53826053c5dd3e893e29";
       "22628dd1170719fb03961fb047564c9a" usebundle => "22628dd1170719fb03961fb047564c9a";
 
@@ -112,9 +156,12 @@ bundle agent cfsketch_run
       "__test_001_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("1b6aaf65758a53826053c5dd3e893e29", "default:cfsketch_run.__test_001_Packages_installed_installed_metadata", @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_add), @(cfsketch_run.__test_001_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___test_001_Packages_installed_installed";
     runenv_22628dd1170719fb03961fb047564c9a_activated::
       "__qwerty_002_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("22628dd1170719fb03961fb047564c9a", "default:cfsketch_run.__qwerty_002_Packages_installed_installed_metadata", @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_add), @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___qwerty_002_Packages_installed_installed";
+    runenv_122b034fe07bdc8dc80d1da23925bf34_activated::
+      "__kujyhg_003_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("122b034fe07bdc8dc80d1da23925bf34", "default:cfsketch_run.__kujyhg_003_Packages_installed_installed_metadata", @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_add), @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___kujyhg_003_Packages_installed_installed";
 
   reports:
     inform_mode::
       "activation __test_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
       "activation __qwerty_002_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
+      "activation __kujyhg_003_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
 }
