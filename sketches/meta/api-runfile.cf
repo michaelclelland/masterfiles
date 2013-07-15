@@ -51,7 +51,7 @@ bundle common cfsketch_g
   vars:
       # Files that need to be loaded for the activated sketches and
       # their dependencies.
-      "inputs" slist => { "sketches/libraries/dclib/library.cf", "sketches/package_management/packages_installed/main.cf" };
+      "inputs" slist => { "sketches/libraries/dclib/library.cf", "sketches/package_management/packages_installed/main.cf", "sketches/system/set_hostname/main.cf" };
 }
 
 bundle agent cfsketch_run
@@ -145,6 +145,29 @@ bundle agent cfsketch_run
       # list 'pkgs_delete' from definition 0ac4d0760f90fcfad549b9e5abbba78d, activation __kujyhg_003_Packages_installed_installed
       "__kujyhg_003_Packages_installed_installed_pkgs_delete" slist => { "iuytre" };
 
+      # array 'metadata' from definition sketch metadata, activation __Newfdsfdsg_004_System_set_hostname_set
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[activation][identifier]" string => "Newfdsfdsg";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[activation][timestamp]" string => "1373899041";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][][type]" string => "bundle_options";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][domainname][type]" string => "return";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][hostname][type]" string => "return";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][metadata][type]" string => "metadata";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][runenv][type]" string => "environment";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[authors]" slist => { "Nick Anderson <nick@cmdln.org>", "Ted Zlatanov <tzz@lifelogs.com>" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[bundle_options][single_use]" string => "1";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[depends]" slist => { "CFEngine::dclib", "CFEngine::stdlib" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[license]" string => "MIT";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[location]" string => "sketches/system/set_hostname";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest]" slist => { "README.md", "changelog", "main.cf", "params/example.json", "test.cf" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest_cf]" slist => { "main.cf", "test.cf" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest_docs]" slist => { "README.md" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest_exe]" slist => { "cf_null" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest_extra]" slist => { "changelog", "params/example.json" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[manifest_test]" slist => { "cf_null" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[name]" string => "System::set_hostname";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[tags]" slist => { "cfdc", "enterprise_compatible" };
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[version]" string => "1.05.2";
+
   methods:
     any::
       "cfsketch_g" usebundle => "cfsketch_g";
@@ -158,10 +181,15 @@ bundle agent cfsketch_run
       "__qwerty_002_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("22628dd1170719fb03961fb047564c9a", "default:cfsketch_run.__qwerty_002_Packages_installed_installed_metadata", @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_add), @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___qwerty_002_Packages_installed_installed";
     runenv_122b034fe07bdc8dc80d1da23925bf34_activated::
       "__kujyhg_003_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("122b034fe07bdc8dc80d1da23925bf34", "default:cfsketch_run.__kujyhg_003_Packages_installed_installed_metadata", @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_add), @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___kujyhg_003_Packages_installed_installed";
+    runenv_1b6aaf65758a53826053c5dd3e893e29_activated::
+      "__Newfdsfdsg_004_System_set_hostname_set" usebundle => cfdc_hostname:set("1b6aaf65758a53826053c5dd3e893e29", "default:cfsketch_run.__Newfdsfdsg_004_System_set_hostname_set_metadata", "Ndsg", "gdfsgfds"), ifvarclass => "(darwin|debian|gentoo|redhat)", useresult => "return___Newfdsfdsg_004_System_set_hostname_set";
 
   reports:
     inform_mode::
       "activation __test_001_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
       "activation __qwerty_002_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
       "activation __kujyhg_003_Packages_installed_installed could not run because it requires classes (debian)" ifvarclass => "inform_mode.!((debian))";
+      "activation __Newfdsfdsg_004_System_set_hostname_set returned hostname = $(return___Newfdsfdsg_004_System_set_hostname_set[hostname])";
+      "activation __Newfdsfdsg_004_System_set_hostname_set returned domainname = $(return___Newfdsfdsg_004_System_set_hostname_set[domainname])";
+      "activation __Newfdsfdsg_004_System_set_hostname_set could not run because it requires classes (darwin|debian|gentoo|redhat)" ifvarclass => "inform_mode.!((darwin|debian|gentoo|redhat))";
 }
