@@ -147,7 +147,7 @@ bundle agent cfsketch_run
 
       # array 'metadata' from definition sketch metadata, activation __Newfdsfdsg_004_System_set_hostname_set
       "__Newfdsfdsg_004_System_set_hostname_set_metadata[activation][identifier]" string => "Newfdsfdsg";
-      "__Newfdsfdsg_004_System_set_hostname_set_metadata[activation][timestamp]" string => "1373899041";
+      "__Newfdsfdsg_004_System_set_hostname_set_metadata[activation][timestamp]" string => "1373984725";
       "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][][type]" string => "bundle_options";
       "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][domainname][type]" string => "return";
       "__Newfdsfdsg_004_System_set_hostname_set_metadata[api][hostname][type]" string => "return";
@@ -181,8 +181,8 @@ bundle agent cfsketch_run
       "__qwerty_002_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("22628dd1170719fb03961fb047564c9a", "default:cfsketch_run.__qwerty_002_Packages_installed_installed_metadata", @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_add), @(cfsketch_run.__qwerty_002_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___qwerty_002_Packages_installed_installed";
     runenv_122b034fe07bdc8dc80d1da23925bf34_activated::
       "__kujyhg_003_Packages_installed_installed" usebundle => cfdc_packages_installed:installed("122b034fe07bdc8dc80d1da23925bf34", "default:cfsketch_run.__kujyhg_003_Packages_installed_installed_metadata", @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_add), @(cfsketch_run.__kujyhg_003_Packages_installed_installed_pkgs_delete)), ifvarclass => "(debian)", useresult => "return___kujyhg_003_Packages_installed_installed";
-    runenv_1b6aaf65758a53826053c5dd3e893e29_activated::
-      "__Newfdsfdsg_004_System_set_hostname_set" usebundle => cfdc_hostname:set("1b6aaf65758a53826053c5dd3e893e29", "default:cfsketch_run.__Newfdsfdsg_004_System_set_hostname_set_metadata", "Ndsg", "gdfsgfds"), ifvarclass => "(darwin|debian|gentoo|redhat)", useresult => "return___Newfdsfdsg_004_System_set_hostname_set";
+    runenv_122b034fe07bdc8dc80d1da23925bf34_activated::
+      "__Newfdsfdsg_004_System_set_hostname_set" usebundle => cfdc_hostname:set("122b034fe07bdc8dc80d1da23925bf34", "default:cfsketch_run.__Newfdsfdsg_004_System_set_hostname_set_metadata", "Ndsg", "gdfsgfds"), ifvarclass => "(darwin|debian|gentoo|redhat)", useresult => "return___Newfdsfdsg_004_System_set_hostname_set";
 
   reports:
     inform_mode::
